@@ -5,7 +5,7 @@ mod tests {
     use regex::Regex;
 
     static REGMATCH_MULT: LazyLock<Regex> = LazyLock::new(|| Regex::new(r"mul\((\d{1,3}),(\d{1,3})\)").unwrap());
-    static REGMATCH_MULT_DO_DONT: LazyLock<Regex> = LazyLock::new(|| Regex::new(r"(mul\((\d{1,3}),(\d{1,3})\)|do\(\)|don't\(\))").unwrap());
+    static REGMATCH_MULT_DO_DONT: LazyLock<Regex> = LazyLock::new(|| Regex::new(r"mul\((\d{1,3}),(\d{1,3})\)|do\(\)|don't\(\)").unwrap());
 
     #[test]
     fn day3_part1() {
@@ -37,8 +37,8 @@ mod tests {
                     donext = false
                 } else {
                     if donext {
-                        let first: i64 = cap[2].parse().unwrap();
-                        let second: i64 = cap[3].parse().unwrap();
+                        let first: i64 = cap[1].parse().unwrap();
+                        let second: i64 = cap[2].parse().unwrap();
                         total += first * second;
                     }
                 }
