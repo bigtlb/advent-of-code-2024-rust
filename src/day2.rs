@@ -1,8 +1,8 @@
-use crate::util::read_file_to_string_array;
 
 #[cfg(test)]
 mod tests {
-    use super::*;
+    use crate::util::read_file_to_string_array;
+
     #[derive(PartialEq)]
     enum Direction {
         Up,
@@ -40,7 +40,7 @@ mod tests {
     }
 
     #[test]
-    fn day12_part1() {
+    fn day2_part1() {
         let lines = read_file_to_string_array("src/day2_part1.data").unwrap();
 
         let mut reports: Vec<Vec<i32>> = Vec::new();

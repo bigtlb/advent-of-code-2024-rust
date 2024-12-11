@@ -1,8 +1,7 @@
-use crate::util::read_file_to_string_array;
 
 #[cfg(test)]
 mod tests {
-    use super::*;
+    use crate::util::read_file_to_string_array;
 
     #[test]
     fn day1_part1() {
