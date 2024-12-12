@@ -64,9 +64,29 @@ mod test {
         }
     }
 
+    fn is_cross_mas(lines: &[Vec<char>], ldx: i32, cdx: i32) -> bool {
+        if lines[ldx as usize][cdx as usize] != 'A' ||
+            ldx + 2 > lines.len() as i32 ||
+            cdx + 2 > lines[ldx as usize].len() as i32 ||
+            ldx - 1 < 0 ||
+            cdx - 1 < 0 {
+            return false;
+        }
+
+        let mut criss: String = String::new();
+        let mut cross: String = String::new();
+        for i in -1..=1 {
+            criss.push(lines[(ldx + i) as usize][(cdx + i) as usize]);
+            cross.push(lines[(ldx + i) as usize][(cdx - i) as usize]);
+        }
+
+        (criss == "MAS" || criss == "SAM") && (cross == "MAS" || cross == "SAM")
+
+    }
+
         #[test]
     fn day4_part1() {
-        // let lines: Vec<Vec<char>> = read_file_to_string_array("src/day4_test.data")
+        //let lines: Vec<Vec<char>> = read_file_to_string_array("src/day4_test.data")
         let lines: Vec<Vec<char>> = read_file_to_string_array("src/day4_part1.data")
             .unwrap()
             .iter()
@@ -85,6 +105,21 @@ mod test {
 
     #[test]
     fn day4_part2() {
+        let lines: Vec<Vec<char>> = read_file_to_string_array("src/day4_part1.data")
+            .unwrap()
+            .iter()
+            .map(|line| line.chars().collect())
+            .collect();
 
+        let mut number_xmases:i32 = 0;
+        for ldx in 0..lines.len() {
+            for cdx in 0..lines[ldx].len() {
+                if is_cross_mas(&lines, ldx as i32, cdx as i32) {
+                    number_xmases += 1;
+                }
+            }
+        }
+
+        println!("The number of cross MAS es is: {}", number_xmases);
     }
 }
