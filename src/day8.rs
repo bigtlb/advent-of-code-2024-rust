@@ -103,7 +103,7 @@ mod test {
                 .filter(|(x, y)| x >= &0 && y >= &0 && x < &bounds.0 && y < &bounds.1)
                 .collect();
             antinodeset.extend(antinodes.iter().cloned());
-            antinodes.extend(points.iter().cloned());
+            antinodeset.extend(points.iter().cloned());
         }
 
         println!("Antinode count: {}", antinodeset.len());
