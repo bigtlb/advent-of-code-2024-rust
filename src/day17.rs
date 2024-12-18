@@ -162,7 +162,6 @@ mod test {
         registers.insert('A',0);
         let mut digits: Vec<usize> = Vec::new();
         if try_all_octal_values(0, registers[&'B'], registers[&'C'], &program, (program.len()-1) as isize, &mut digits) {
-            // COncatenate the octal digits into a string
             println!("Digits: {}", usize::from_str_radix(&digits.iter().map(|x| x.to_string()).collect::<Vec<String>>().join(""),8).expect("InvalidOctal number"));
         } else {
             println!("No solution found");
