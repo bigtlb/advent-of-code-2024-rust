@@ -54,6 +54,7 @@ mod test {
             (0, -1, '^'), // up
         ];
         let mut heap = BinaryHeap::new();
+        // Need to keep track of location and direction when visited, and score at that point
         let mut visited = vec![vec![vec![usize::MAX; 4]; map[0].len()]; map.len()];
         let mut best_paths = Vec::new();
         let mut best_score = usize::MAX;
