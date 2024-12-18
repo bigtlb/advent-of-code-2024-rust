@@ -53,7 +53,7 @@ mod test {
             } else {
                 // Check and see if the box can move, if so update the mox position and this thing
                 if map[ny][nx] == 'O' {
-                    let (thing2, success) = move_thing(&(nx, ny), map, direction);
+                    let (_, success) = move_thing(&(nx, ny), map, direction);
                     if success{
                         map[(ny as isize + dy) as usize][(nx as isize + dx) as usize] = map[ny][nx];
                         map[ny][nx] = '.';
@@ -79,8 +79,6 @@ mod test {
         let (nx, ny) = (x as isize + dx, y as isize + dy);
         if nx >= 0 && ny >= 0 && nx < map[0].len() as isize && ny < map.len() as isize {
             let (nx, ny) = (nx as usize, ny as usize);
-            let l = map[ny][nx];
-            let r = map[ny][nx+1];
             if map[ny][nx] == '.' && ((direction == '<' || direction == '>') || map[ny][nx+1] == '.'){
                 if actually_move {
                     let bx = if direction == '>' {nx-1} else {nx};
@@ -195,9 +193,9 @@ mod test {
     }
     fn inflate_map(map: Vec<Vec<char>>) -> Vec<Vec<char>> {
         let mut new_map = Vec::new();
-        for (y, row) in map.iter().enumerate() {
+        for row in map.iter() {
             let mut new_row = Vec::new();
-            for (x, cell) in row.iter().enumerate() {
+            for cell in row.iter() {
                 match cell {
                     '#' => {
                         new_row.push('#');
@@ -226,7 +224,6 @@ mod test {
     fn day15_part1() {
         let (mut map, directions) = load_map("src/day15_part1.data");
         let mut robot = get_robot(&mut map);
-        let mut success: bool = false;
         print_state(&mut map, &mut robot);
         for direction in directions {
             (robot, _) = move_thing(&robot, &mut map, direction);
@@ -243,10 +240,9 @@ mod test {
         let (mut map, directions) = load_map("src/day15_part1.data");
         map = inflate_map(map);
         let mut robot = get_robot(&mut map);
-        let mut success: bool = false;
         print_state(&mut map, &mut robot);
         for direction in directions {
-            (robot, success) = move_robot2(&robot, &mut map, direction);
+            (robot, _) = move_robot2(&robot, &mut map, direction);
         }
         println!("\n\n");
         print_state(&map, &robot);
