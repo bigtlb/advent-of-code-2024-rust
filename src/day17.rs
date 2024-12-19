@@ -118,7 +118,6 @@ mod test {
             if checkoutput == checkdigit {
                 digits.push(i);
                 let new_a = a + i << 3;
-                let digits_clone = digits.clone();
                 if try_all_octal_values(new_a, b, c, program, pos-1, digits) {
                     return true;
                 }
